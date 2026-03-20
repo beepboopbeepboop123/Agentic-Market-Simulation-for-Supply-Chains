@@ -1,0 +1,182 @@
+{
+  "Factory_Shanghai": {
+    "lat": 31.2304,
+    "lon": 121.4737,
+    "type": "supplier",
+    "country": "China"
+  },
+  "Factory_Shenzhen": {
+    "lat": 22.5431,
+    "lon": 114.0579,
+    "type": "supplier",
+    "country": "China"
+  },
+  "Factory_Ho_Chi_Minh": {
+    "lat": 10.8231,
+    "lon": 106.6297,
+    "type": "supplier",
+    "country": "Vietnam"
+  },
+  "Factory_Mumbai": {
+    "lat": 19.076,
+    "lon": 72.8777,
+    "type": "supplier",
+    "country": "India"
+  },
+  "Shanghai_Port": {
+    "lat": 31.2304,
+    "lon": 121.5,
+    "type": "port",
+    "country": "China"
+  },
+  "Shenzhen_Yantian": {
+    "lat": 22.56,
+    "lon": 114.27,
+    "type": "port",
+    "country": "China"
+  },
+  "Hong_Kong_Port": {
+    "lat": 22.3193,
+    "lon": 114.1694,
+    "type": "port",
+    "country": "China"
+  },
+  "Singapore_Port": {
+    "lat": 1.2655,
+    "lon": 103.82,
+    "type": "port",
+    "country": "Singapore"
+  },
+  "Busan_Port": {
+    "lat": 35.1028,
+    "lon": 129.04,
+    "type": "port",
+    "country": "South Korea"
+  },
+  "Port_Klang": {
+    "lat": 3.0,
+    "lon": 101.4,
+    "type": "port",
+    "country": "Malaysia"
+  },
+  "Colombo_Port": {
+    "lat": 6.9271,
+    "lon": 79.8612,
+    "type": "port",
+    "country": "Sri Lanka"
+  },
+  "Mumbai_Port": {
+    "lat": 18.93,
+    "lon": 72.84,
+    "type": "port",
+    "country": "India"
+  },
+  "Jebel_Ali": {
+    "lat": 25.0118,
+    "lon": 55.0694,
+    "type": "port",
+    "country": "UAE"
+  },
+  "Port_Said": {
+    "lat": 31.2565,
+    "lon": 32.2841,
+    "type": "port",
+    "country": "Egypt"
+  },
+  "Rotterdam_Port": {
+    "lat": 51.9225,
+    "lon": 4.4792,
+    "type": "port",
+    "country": "Netherlands"
+  },
+  "Hamburg_Port": {
+    "lat": 53.5753,
+    "lon": 9.92,
+    "type": "port",
+    "country": "Germany"
+  },
+  "Los_Angeles_Port": {
+    "lat": 33.7395,
+    "lon": -118.262,
+    "type": "port",
+    "country": "USA"
+  },
+  "Long_Beach_Port": {
+    "lat": 33.7542,
+    "lon": -118.2165,
+    "type": "port",
+    "country": "USA"
+  },
+  "Seattle_Port": {
+    "lat": 47.6062,
+    "lon": -122.3321,
+    "type": "port",
+    "country": "USA"
+  },
+  "New_York_Port": {
+    "lat": 40.684,
+    "lon": -74.044,
+    "type": "port",
+    "country": "USA"
+  },
+  "Houston_Port": {
+    "lat": 29.7283,
+    "lon": -95.0,
+    "type": "port",
+    "country": "USA"
+  },
+  "Savannah_Port": {
+    "lat": 32.0835,
+    "lon": -81.0998,
+    "type": "port",
+    "country": "USA"
+  },
+  "Warehouse_LA": {
+    "lat": 34.0522,
+    "lon": -118.2437,
+    "type": "warehouse",
+    "country": "USA"
+  },
+  "Warehouse_Chicago": {
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "type": "warehouse",
+    "country": "USA"
+  },
+  "Warehouse_NewYork": {
+    "lat": 40.7128,
+    "lon": -74.006,
+    "type": "warehouse",
+    "country": "USA"
+  },
+  "Warehouse_Houston": {
+    "lat": 29.7604,
+    "lon": -95.3698,
+    "type": "warehouse",
+    "country": "USA"
+  },
+  "Customer_NewYork": {
+    "lat": 40.7128,
+    "lon": -74.006,
+    "type": "customer",
+    "country": "USA"
+  },
+  "Customer_Chicago": {
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "type": "customer",
+    "country": "USA"
+  },
+  "Customer_LA": {
+    "lat": 34.0522,
+    "lon": -118.2437,
+    "type": "customer",
+    "country": "USA"
+  },
+  "Customer_London": {
+    "lat": 51.5074,
+    "lon": -0.1278,
+    "type": "customer",
+    "country": "UK"
+  }
+}
