@@ -1,7 +1,7 @@
- 1. This disruption is Critical, as Shanghai Port closure disrupts the primary route to Customer_NewYork.
+ 1. This disruption is of high severity as Shanghai Port closure impacts the primary route from Factory_Shanghai to Customer_NewYork. The alternate route, while available, increases delivery time and cost significantly.
 
-2. Route Analyst: Prioritize the 17 surviving routes, focus on optimizing for speed and cost while ensuring compliance with all regulations and logistics providers.
+2. Route Analyst: Prioritize reviewing the 17 surviving routes for any potential bottlenecks or delays that may affect our estimated average of 26.2 days. Identify any optimizations to reduce transit time and cost.
 
-3. Risk Assessor: Monitor potential delays at Busan_Port and New_York_Port due to increased traffic, and assess the risk of damage or loss during transit over land and sea.
+3. Risk Assessor: Monitor weather conditions, political instability, or other disruptions that could potentially impact the chosen route (Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork). Pay close attention to any changes in shipping regulations at the various ports.
 
-4. Playbook Writer: Emphasize emergency response protocols, contingency plans, and communication strategies for updating stakeholders about the situation and revised delivery schedules. Encourage proactive problem-solving and collaboration with logistics partners to minimize disruption and ensure timely delivery.
+4. Playbook Writer: Emphasize contingency plans, particularly those that focus on rapid adaptation and implementation of alternative routes should unforeseen issues arise during transit. Include best practices for communication and collaboration with key stakeholders in the revised playbooks.
