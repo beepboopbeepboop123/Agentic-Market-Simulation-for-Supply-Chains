@@ -1,0 +1,24 @@
+ **TOP ROUTES ANALYSIS:**
+
+1. Shanghai_Port → Busan_Port → Long_Beach_Port → Warehouse_LA → Warehouse_Chicago → Warehouse_NewYork → Customer_NewYork
+   - CONGESTION RISK: Moderate, particularly during peak season (April to June and September to December) in both Busan and Long Beach ports.
+   - GEOPOLITICAL RISK: Low, no significant political tensions in the region.
+   - SEASONAL RISK: Low, weather patterns are generally favorable for shipping throughout the year.
+   - CAPACITY RISK: High, as both Busan and Long Beach ports have high capacity but could face challenges with increased traffic from redirected routes.
+   - OVERALL RISK LEVEL: Medium due to potential congestion and capacity issues.
+
+2. Shanghai_Port → Busan_Port → Los_Angeles_Port → Warehouse_LA → Warehouse_Chicago → Customer_NewYork
+   - CONGESTION RISK: Moderate, similar to the above route with potential congestion in both Busan and Los Angeles ports.
+   - GEOPOLITICAL RISK: Low, no significant political tensions in the region.
+   - SEASONAL RISK: Low, weather patterns are generally favorable for shipping throughout the year.
+   - CAPACITY RISK: High, as both Busan and Los Angeles ports have high capacity but could face challenges with increased traffic from redirected routes.
+   - OVERALL RISK LEVEL: Medium due to potential congestion and capacity issues.
+
+3. Shanghai_Port → Shenzhen_Yantian → Los_Angeles_Port → Warehouse_LA → Warehouse_Chicago → Customer_NewYork
+   - CONGESTION RISK: Low, as Yantian port has lower congestion compared to Busan and Long Beach ports. However, Shenzhen is a major hub and may experience occasional congestion.
+   - GEOPOLITICAL RISK: Medium, due to ongoing trade tensions between China and the US that could impact this route.
+   - SEASONAL RISK: Low, weather patterns are generally favorable for shipping throughout the year.
+   - CAPACITY RISK: High, as both Yantian and Los Angeles ports have high capacity but could face challenges with increased traffic from redirected routes.
+   - OVERALL RISK LEVEL: Medium due to potential geopolitical risks and capacity issues.
+
+**SAFEST ROUTE OVERALL:** Factory_Shanghai → Busan_Port → Seattle_Port → Warehouse_Chicago → Customer_NewYork. This route offers a lower risk of congestion, no significant geopolitical tensions, and a direct sea passage to Seattle that could help minimize transit time over land. Additionally, the capacity risk is lower as Seattle port's volume may not be as heavily affected by redirected traffic from Shanghai.

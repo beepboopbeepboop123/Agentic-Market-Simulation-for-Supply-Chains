@@ -9,9 +9,10 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from simulation.map import supply_chain, simulate_disruption, run_monte_carlo
+from simulation.map import supply_chain, run_monte_carlo
 from simulation.real_ports import REAL_PORTS
-from agents.playbook import generate_playbook
+from agents.multi_agent import run_multi_agent_system
+from agents.disaster_detector import scan_all_ports, check_auto_trigger
 
 # ─────────────────────────────────────────
 # PAGE CONFIG
@@ -50,12 +51,10 @@ with st.sidebar:
         n for n, d in REAL_PORTS.items()
         if d["type"] == "port"
     ]
-
     source_options = [
         n for n, d in REAL_PORTS.items()
         if d["type"] == "supplier"
     ]
-
     target_options = [
         n for n, d in REAL_PORTS.items()
         if d["type"] == "customer"
@@ -74,19 +73,62 @@ with st.sidebar:
         type="primary"
     )
 
+    # ── Weather Scanner ───────────────────
+    st.divider()
+    weather_button = st.button(
+        "🌍 Scan Live Weather",
+        use_container_width=True
+    )
+
+    if weather_button:
+        with st.spinner("Scanning all ports for weather risks..."):
+            weather_report = scan_all_ports()
+
+        st.divider()
+        st.markdown("**🌤️ Live Port Weather**")
+
+        for port, data in weather_report["ports"].items():
+            emoji = {
+                "LOW":      "🟢",
+                "MEDIUM":   "🟡",
+                "HIGH":     "🔴",
+                "CRITICAL": "🚨"
+            }.get(data["risk_level"], "⚪")
+
+            st.markdown(
+                f"{emoji} **{port.replace('_',' ')}**  "
+                f"{data['condition']} {data['temp_c']}°C"
+            )
+
+        if weather_report["at_risk"]:
+            st.divider()
+            st.error("🚨 HIGH RISK PORTS DETECTED")
+            for port in weather_report["at_risk"]:
+                st.warning(
+                    f"⚠️ {port.replace('_',' ')} — "
+                    f"Auto-simulation recommended"
+                )
+            st.info(
+                "Select the at-risk port from "
+                "Disrupted Location and run simulation"
+            )
+        else:
+            st.success("✅ All ports clear")
+
+    # ── Selected Port Info ────────────────
     if disaster_node in REAL_PORTS:
         info = REAL_PORTS[disaster_node]
         st.divider()
         st.markdown(f"""
         **Selected Port Info**
-        - 📍 Country: {info['country']}
-        - 🌐 Lat: {info['lat']}
-        - 🌐 Lon: {info['lon']}
-        - 🏷️ Type: {info['type']}
+        - 📍 Country : {info['country']}
+        - 🌐 Lat     : {info['lat']}
+        - 🌐 Lon     : {info['lon']}
+        - 🏷️ Type    : {info['type']}
         """)
 
 # ─────────────────────────────────────────
-# MAIN PANELS
+# ROW 1 — MAP + CHARTS
 # ─────────────────────────────────────────
 
 col1, col2 = st.columns([1.5, 1])
@@ -101,26 +143,61 @@ with col2:
     stats_placeholder = st.empty()
 
 st.divider()
-st.subheader("📋 AI Recovery Playbook")
+
+# ─────────────────────────────────────────
+# ROW 2 — 4 AGENT PANELS
+# ─────────────────────────────────────────
+
+st.subheader("🤖 Multi-Agent AI System")
+st.markdown("*Four specialized AI agents working together in real time*")
+
+a1, a2, a3, a4 = st.columns(4)
+
+with a1:
+    st.markdown("**🧠 Agent 1 — Orchestrator**")
+    agent1_placeholder = st.empty()
+    agent1_placeholder.info("Waiting for simulation...")
+
+with a2:
+    st.markdown("**📊 Agent 2 — Route Analyst**")
+    agent2_placeholder = st.empty()
+    agent2_placeholder.info("Waiting for simulation...")
+
+with a3:
+    st.markdown("**⚠️ Agent 3 — Risk Assessor**")
+    agent3_placeholder = st.empty()
+    agent3_placeholder.info("Waiting for simulation...")
+
+with a4:
+    st.markdown("**📋 Agent 4 — Playbook Writer**")
+    agent4_placeholder = st.empty()
+    agent4_placeholder.info("Waiting for simulation...")
+
+st.divider()
+
+# ─────────────────────────────────────────
+# ROW 3 — FULL PLAYBOOK
+# ─────────────────────────────────────────
+
+st.subheader("📋 Full Recovery Playbook")
 playbook_placeholder = st.empty()
+playbook_placeholder.info("Run a simulation to generate the playbook.")
 
 
 # ─────────────────────────────────────────
-# DRAW REAL WORLD MAP
+# DRAW WORLD MAP
 # ─────────────────────────────────────────
 
 def draw_world_map(closed_node=None, best_route=None):
 
     fig = go.Figure()
 
-    # Parse best route edges
     best_route_edges = set()
     if best_route:
         route_nodes = best_route.split(" → ")
         for i in range(len(route_nodes) - 1):
             best_route_edges.add((route_nodes[i], route_nodes[i+1]))
 
-    # Draw all shipping routes
     for u, v in supply_chain.edges():
         if u not in REAL_PORTS or v not in REAL_PORTS:
             continue
@@ -131,22 +208,21 @@ def draw_world_map(closed_node=None, best_route=None):
         lon1 = REAL_PORTS[v]["lon"]
 
         if closed_node and (u == closed_node or v == closed_node):
-            color, width, dash = "red", 1, "dash"
+            color, width = "red", 1
         elif (u, v) in best_route_edges:
-            color, width, dash = "#00E676", 3, "solid"
+            color, width = "#00E676", 3
         else:
-            color, width, dash = "rgba(100,100,200,0.3)", 1, "solid"
+            color, width = "rgba(100,100,200,0.3)", 1
 
         fig.add_trace(go.Scattergeo(
-            lat       = [lat0, lat1],
-            lon       = [lon0, lon1],
-            mode      = "lines",
-            line      = dict(width=width, color=color, dash=dash),
-            hoverinfo = "none",
+            lat        = [lat0, lat1],
+            lon        = [lon0, lon1],
+            mode       = "lines",
+            line       = dict(width=width, color=color),
+            hoverinfo  = "none",
             showlegend = False
         ))
 
-    # Node colors by type
     type_colors = {
         "supplier":  "#4CAF50",
         "port":      "#2196F3",
@@ -154,7 +230,6 @@ def draw_world_map(closed_node=None, best_route=None):
         "customer":  "#9C27B0",
     }
 
-    # Draw nodes grouped by type
     for node_type, color in type_colors.items():
         lats, lons, texts, hovers = [], [], [], []
 
@@ -171,9 +246,7 @@ def draw_world_map(closed_node=None, best_route=None):
             edges_out = list(supply_chain.successors(node))
             hover     = f"<b>{node.replace('_',' ')}</b><br>"
             hover    += f"Country: {attrs['country']}<br>"
-            hover    += f"Type: {node_type}<br>"
-            if edges_out:
-                hover += f"Connects to: {len(edges_out)} routes"
+            hover    += f"Connects to: {len(edges_out)} routes"
             hovers.append(hover)
 
         node_color = [
@@ -230,6 +303,21 @@ def draw_world_map(closed_node=None, best_route=None):
 
 
 # ─────────────────────────────────────────
+# AGENT BOX HELPER
+# ─────────────────────────────────────────
+
+def agent_box(text, border_color="#333"):
+    return f"""
+    <div style='background:#1a1a2e; border-radius:10px;
+    padding:15px; border:1px solid {border_color};
+    color:#e0e0e0; font-size:12px; line-height:1.8;
+    height:300px; overflow-y:scroll;'>
+    {text.replace(chr(10), '<br>')}
+    </div>
+    """
+
+
+# ─────────────────────────────────────────
 # INITIAL MAP
 # ─────────────────────────────────────────
 
@@ -237,8 +325,6 @@ map_placeholder.plotly_chart(
     draw_world_map(),
     use_container_width=True
 )
-chart_placeholder.info("Run a simulation to see results.")
-playbook_placeholder.info("Run a simulation to see the AI recovery playbook.")
 
 
 # ─────────────────────────────────────────
@@ -247,13 +333,26 @@ playbook_placeholder.info("Run a simulation to see the AI recovery playbook.")
 
 if run_button:
 
-    # Step 1 — Show disaster on map
+    # Check weather at selected port
+    try:
+        triggers = check_auto_trigger()
+        triggered_ports = [t["port"] for t in triggers]
+        if disaster_node in triggered_ports:
+            st.warning(
+                f"⚠️ WEATHER ALERT: Real dangerous weather "
+                f"detected at {disaster_node}. "
+                f"This simulation was auto-triggered."
+            )
+    except:
+        pass
+
+    # ── Step 1: Show disaster on map ──────
     map_placeholder.plotly_chart(
         draw_world_map(closed_node=disaster_node),
         use_container_width=True
     )
 
-    # Step 2 — Run simulation
+    # ── Step 2: Run simulation ─────────────
     with st.spinner(f"⚙️ Running {num_runs} simulations..."):
         run_monte_carlo(
             closed_node = disaster_node,
@@ -262,19 +361,18 @@ if run_button:
             runs        = num_runs
         )
 
-    # Step 3 — Load results
+    # ── Step 3: Load results ───────────────
     with open("data/results.json", "r", encoding="utf-8") as f:
         results = json.load(f)
 
-    # Step 4 — Show charts
+    # ── Step 4: Show charts ────────────────
     if "route_summary" in results and results["route_summary"]:
-
         routes      = list(results["route_summary"].keys())
         short_names = [f"Route {i+1}" for i in range(len(routes))]
         avg_days    = [results["route_summary"][r]["avg_days"] for r in routes]
         avg_costs   = [results["route_summary"][r]["avg_cost"] for r in routes]
         success     = [
-            float(results["route_summary"][r]["success_rate"].replace("%", ""))
+            float(results["route_summary"][r]["success_rate"].replace("%",""))
             for r in routes
         ]
 
@@ -310,35 +408,77 @@ if run_button:
             use_container_width=True
         )
 
-    # Step 5 — Update map with best route
+    # ── Step 5: Agent spinners ─────────────
+    agent1_placeholder.warning("🧠 Agent 1 thinking...")
+    agent2_placeholder.warning("⏳ Waiting...")
+    agent3_placeholder.warning("⏳ Waiting...")
+    agent4_placeholder.warning("⏳ Waiting...")
+
+    # ── Step 6: Run all 4 agents ──────────
+    with st.spinner("🤖 Multi-Agent AI System running..."):
+        agent_outputs = run_multi_agent_system(
+            disaster_node = disaster_node,
+            source        = source_node,
+            target        = target_node,
+            model         = ai_model
+        )
+
+    # ── Step 7: Show agent outputs ─────────
+    agent1_placeholder.markdown(
+        agent_box(
+            agent_outputs["orchestrator"],
+            border_color="#2196F3"
+        ),
+        unsafe_allow_html=True
+    )
+    agent2_placeholder.markdown(
+        agent_box(
+            agent_outputs["route_analyst"],
+            border_color="#4CAF50"
+        ),
+        unsafe_allow_html=True
+    )
+    agent3_placeholder.markdown(
+        agent_box(
+            agent_outputs["risk_assessor"],
+            border_color="#FF9800"
+        ),
+        unsafe_allow_html=True
+    )
+    agent4_placeholder.markdown(
+        agent_box(
+            agent_outputs["playbook"],
+            border_color="#9C27B0"
+        ),
+        unsafe_allow_html=True
+    )
+
+    # ── Step 8: Update map with best route
     best_route = results.get("best_route", None)
     map_placeholder.plotly_chart(
         draw_world_map(
             closed_node = disaster_node,
-            best_route  = best_route,
+            best_route  = best_route
         ),
         use_container_width=True
     )
 
-    # Step 6 — Generate AI playbook
-    with st.spinner("🤖 AI is writing your recovery playbook..."):
-        playbook = generate_playbook(model=ai_model)
-
+    # ── Step 9: Full playbook ─────────────
     playbook_placeholder.markdown(
         f"""
         <div style='background:#1a1a2e; padding:20px;
         border-radius:10px; color:#e0e0e0;
         font-size:14px; line-height:1.8;
-        border: 1px solid #333;'>
-        {playbook.replace(chr(10), '<br>')}
+        border:1px solid #9C27B0;'>
+        {agent_outputs["playbook"].replace(chr(10), '<br>')}
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    # Step 7 — Summary metrics
+    # ── Step 10: Summary metrics ──────────
     st.divider()
-    m1, m2, m3, m4 = st.columns(4)
+    m1, m2, m3, m4, m5 = st.columns(5)
 
     try:
         all_paths   = list(nx.all_simple_paths(
@@ -352,9 +492,15 @@ if run_button:
     except:
         normal_days = 0
 
-    m1.metric("🔴 Disaster",      disaster_node.replace("_", " "))
-    m2.metric("⏱️ Normal Route",  f"{round(normal_days, 1)} days")
-    m3.metric("🏆 Best Recovery", f"{results['best_avg_days']} days")
-    m4.metric("💰 Recovery Cost", f"${results['best_avg_cost']:,}")
+    delay = round(results['best_avg_days'] - normal_days, 1)
 
-    st.success("✅ Simulation complete. Playbook ready.")
+    m1.metric("🔴 Disaster",       disaster_node.replace("_", " "))
+    m2.metric("⏱️ Normal Route",   f"{round(normal_days, 1)} days")
+    m3.metric("🏆 Best Recovery",  f"{results['best_avg_days']} days")
+    m4.metric("⏰ Delay Added",     f"+{delay} days")
+    m5.metric("💰 Recovery Cost",  f"${results['best_avg_cost']:,}")
+
+    st.success(
+        f"✅ Complete — 4 agents finished in "
+        f"{agent_outputs['time_taken']}s"
+    )
