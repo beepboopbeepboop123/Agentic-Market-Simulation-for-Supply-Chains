@@ -9,48 +9,40 @@ Hardware     : TIER_4 — NVIDIA GeForce RTX 3060
 
  **PRESCRIPTIVE RECOVERY PLAYBOOK**
 
-1. SITUATION SUMMARY
-   - Shanghai Port closure has disrupted the supply chain, impacting timely delivery from Factory_Shanghai to Customer_NewYork. The top priority is to optimize an alternate route while monitoring potential risks and adapting contingency plans.
+1. **SITUATION SUMMARY:**
+   - Disruption at Shanghai Port has caused a critical impact on our primary route for goods from Factory_Shanghai to Customer_NewYork, necessitating an urgent alternative plan.
+   - The recommended alternative is Route 12: Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork, offering a balanced speed and cost profile with the shortest transit time of 26.1 days.
 
-2. IMMEDIATE ACTIONS (Hours 1-24)
-   - Evaluate the current status of alternative ports (Busan, Shenzhen Yantian, Seattle) and analyze their capacities to accommodate increased shipping volumes due to the Shanghai Port closure.
-   - Contact logistics partners for updates on container availability, booking slots, and any potential delays along the identified route: Route 14 (Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork).
-   - Assess geopolitical tensions between South Korea, China, and the US that may impact operations along Route 5 (Factory_Shanghai → Busan_Port → Seattle_Port → Warehouse_Chicago → Customer_NewYork) and adjust contingency plans as needed.
-   - Monitor weather patterns in both East Asian waters and the North Pacific to anticipate any potential delays due to typhoons or winter storms.
+2. **IMMEDIATE ACTIONS (Hours 1-24):**
+   - Collaborate with Route Analyst and Risk Assessor to optimize Route 12 further, taking into account real-time traffic patterns, shipping schedules, port congestion, geopolitical events, and weather conditions.
+   - Contact Warehouse_NewYork to prepare for increased cargo volume and adjust inventory management accordingly.
+   - Notify Customer_NewYork of the disruption and revised estimated delivery date.
+   - Communicate with Factory_Shanghai to inform them of the new route and potential impact on production schedule.
 
-3. SHORT TERM ACTIONS (Days 2-7)
-   - Continuously monitor and optimize the identified route (Route 14) for speed and cost reduction, aiming to further improve the average time (26.2 days) and cost ($1875).
-   - Implement contingency plans for potential congestion at Busan Port due to increased shipping volumes or container availability issues.
-   - Adjust customs procedures as needed to ensure seamless clearance at New York Port and Warehouse_NewYork.
-   - Keep stakeholders informed about any changes in delivery timelines, routes, or costs due to the disruption.
+3. **SHORT TERM ACTIONS (Days 2-7):**
+   - Continuously monitor geopolitical events, weather conditions, and port congestion along Route 12 to adjust and optimize the route as needed.
+   - Collaborate with Warehouse_NewYork to ensure smooth handling and storage of cargo upon arrival.
+   - Coordinate with Customer_NewYork for any additional support or contingency measures required to minimize disruption.
 
-4. ROUTES RANKED (Top 3 with pros/cons)
-   - **Route 14: Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork**
-     - Pros: Shortest average time, lowest cost, and highest success rate in simulations.
-     - Cons: Medium overall risk level due to congestion potential, geopolitical tensions, weather conditions, and capacity issues.
+4. **ROUTES RANKED (top 3 with pros/cons):**
+   - **Recommended Route 12:** Shortest transit time, balanced speed and cost profile; however, higher risk due to congestion, geopolitical tensions, seasonal weather patterns, and capacity limits.
+   - **Alternative Route 16:** Slightly longer transit time but cheaper than Route 12, making it a viable alternative if speed is prioritized over cost; lower overall risk compared to Route 12 due to reduced congestion and geopolitical risks, but higher seasonal and capacity risks.
+   - **Alternative Route 13:** Faster than Route 16 but much more expensive; higher overall risk due to increased capacity risks and longer transit time.
 
-   - **Route 5: Factory_Shanghai → Busan_Port → Seattle_Port → Warehouse_Chicago → Customer_NewYork**
-     - Pros: Faster delivery compared to Route 14 but slightly higher cost.
-     - Cons: High overall risk level due to seasonal weather patterns and potential congestion at both Busan and Seattle ports.
+5. **RISKS TO WATCH (top 3 with mitigation):**
+   - **Congestion Risk:** Monitor port congestion at Busan Port and New York Port, adjusting the route or cargo distribution as needed to minimize delays.
+   - **Geopolitical Risk:** Keep abreast of geopolitical tensions between South Korea, China, the United States, and implement contingencies if necessary.
+   - **Seasonal Risk:** Continuously monitor weather patterns in Southeast Asia and the Pacific, making adjustments to the route or cargo distribution to avoid disruptions caused by monsoons or typhoons.
 
-   - **Route 6: Factory_Shanghai → Shenzhen_Yantian → New_York_Port → Warehouse_NewYork → Customer_NewYork**
-     - Pros: Low weather risk during winter months and favorable conditions in the South China Sea.
-     - Cons: High overall risk level due to ongoing congestion at Yantian Port, geopolitical stability between China and the US, and potential typhoon risks during summer months.
+6. **WHO TO NOTIFY (specific stakeholders):**
+   - Factory_Shanghai: Inform of new route and potential impact on production schedule.
+   - Warehouse_NewYork: Prepare for increased cargo volume and adjust inventory management accordingly.
+   - Customer_NewYork: Notify of the disruption and revised estimated delivery date.
+   - Transportation Department: Update shipping schedules, cargo distribution, and routes.
 
-5. RISKS TO WATCH (Top 3 with mitigation)
-   - **Congestion Risk:** Monitor Busan Port for increased shipping volumes that may lead to congestion and delays. Implement contingency plans such as rerouting or chartering additional vessels if needed.
-
-   - **Geopolitical Risk:** Keep an eye on regional policies between South Korea, China, and the US that may impact trade and operations along Route 14 and Route 5. Adjust contingency plans accordingly to minimize disruptions.
-
-   - **Seasonal Risk (Weather Conditions):** Anticipate typhoon season in East Asian waters (June-October) and winter storms in the North Pacific (November-March). Use real-time weather updates and adjust shipping schedules as necessary to avoid delays.
-
-6. WHO TO NOTIFY (Specific Stakeholders)
-   - Logistics partners: Shipping lines, freight forwarders, warehouses, customs brokers.
-   - Factory_Shanghai management: For any updates on production or shipping schedules.
-   - Customer_NewYork: For transparency about potential delays or changes in delivery times.
-   - Emergency response team: To coordinate efforts in managing the disruption and implementing contingency plans.
-
-7. SUCCESS METRICS (What numbers to watch)
-   - Delivery time: Monitor the average time it takes for goods to travel from Factory_Shanghai to Customer_NewYork, aiming to reduce this value while maintaining a competitive delivery schedule.
-   - Cost: Keep track of costs associated with shipping, storage, and customs clearance to ensure they remain within acceptable limits while optimizing efficiency.
-   - Success rate: Monitor the success rate of simulations using various routes to make informed decisions about which route to prioritize based on the best balance between speed, cost, and reliability.
+7. **SUCCESS METRICS (what numbers to watch):**
+   - Transit time for each leg of Route 12.
+   - Congestion levels at Busan Port and New York Port.
+   - Geopolitical events that may impact the route or cargo handling.
+   - Weather patterns in Southeast Asia and the Pacific.
+   - Cost per unit for shipping along Route 12.
