@@ -1,14 +1,15 @@
- 1. Top 3 Routes:
-   - Route 14 (Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork): Fastest with an average of 26.2 days and least expensive at $1875, making it the most cost-effective option.
-   - Route 1 (Factory_Shanghai → Busan_Port → Los_Angeles_Port → Warehouse_LA → Warehouse_Chicago → Customer_NewYork) ranks second due to its shorter transit time of 31.0 days, but higher cost ($2157).
-   - Route 5 (Factory_Shanghai → Busan_Port → Seattle_Port → Warehouse_Chicago → Customer_NewYork) is the third best choice with an average of 27.7 days and a slightly lower cost of $1978.
+ 1. **TOP 3 ROUTES:**
+   - Route 14: Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork (Average: 26.2 days, $1875) - This route is the best as it offers the shortest average time and lowest cost among the analyzed routes.
+   - Route 5: Factory_Shanghai → Busan_Port → Seattle_Port → Warehouse_Chicago → Customer_NewYork (Average: 27.7 days, $1978) - A close second with a slightly longer time but still competitive cost.
+   - Route 6: Factory_Shanghai → Shenzhen_Yantian → New_York_Port → Warehouse_NewYork → Customer_NewYork (Average: 29.0 days, $2037) - Although slightly slower and more expensive than the top two, it maintains a decent balance between time and cost.
 
-2. Speed vs Cost Tradeoff:
-   - The fastest route is Route 14, which also happens to be the least expensive, making it the optimal choice for both speed and cost.
-   - On the other hand, Route 16 (Factory_Shanghai → Busan_Port → Singapore_Port → Los_Angeles_Port → Warehouse_LA → Warehouse_Chicago → Warehouse_NewYork → Customer_NewYork) is the slowest route with an average of 47.1 days, and while it's not the most expensive ($3166), it falls short in terms of transit time.
+2. **SPEED vs COST TRADEOFF:**
+   - Fastest route: Route 5 (27.7 days)
+   - Cheapest route: Route 14 (1875 dollars)
+   - They are not the same, with Route 5 being faster but more expensive than Route 14.
 
-3. Reliability Score:
-   - Based on success rate, Route 14 is the most reliable with a 5.1% success rate across 1000 simulations, making it the least likely to encounter disruptions or delays.
+3. **RELIABILITY SCORE:**
+   - Route 14 has the highest success rate (5.1%) due to its direct connection from Busan Port to New York, reducing potential delays and complications.
 
-4. Recommendation:
-   - Given the combined factors of speed, cost, and reliability, I recommend Route 14 (Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork) as the best route for your shipping needs. This route offers the fastest delivery time, is least expensive, and has demonstrated the highest level of consistency in simulations. However, it's crucial to remain vigilant about potential disruptions along this route and be prepared with contingency plans.
+4. **YOUR RECOMMENDATION:**
+   Based on speed, cost, and reliability, I recommend Route 14: Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork due to its optimal balance between delivery time (26.2 days) and cost ($1875), and its high success rate in simulations. However, it is crucial to monitor for potential risks along this route, as well as to have contingency plans in place to address any unforeseen challenges that may arise due to the disaster.

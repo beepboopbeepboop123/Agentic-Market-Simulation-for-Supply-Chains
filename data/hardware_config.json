@@ -1,0 +1,25 @@
+{
+  "gpu": {
+    "has_gpu": true,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "vram_mb": 12288,
+    "vram_gb": 12.0,
+    "cuda_available": true,
+    "driver_version": "595.79"
+  },
+  "ram": {
+    "total_gb": 15.9,
+    "available_gb": 7.2
+  },
+  "tier": "TIER_4",
+  "config": {
+    "label": "High End GPU (8GB+ VRAM)",
+    "recommended_model": "mistral",
+    "fallback_model": "phi3",
+    "context_length": 8192,
+    "max_tokens": 2000,
+    "num_gpu_layers": 35,
+    "description": "Full Mistral-7B on GPU. Best quality output.",
+    "emoji": "\ud83d\ude80"
+  }
+}
