@@ -1,27 +1,93 @@
 {
+  "RawMaterial_Australia": {
+    "lat": -33.8688,
+    "lon": 151.2093,
+    "type": "raw_supplier",
+    "country": "Australia"
+  },
+  "RawMaterial_Brazil": {
+    "lat": -19.9191,
+    "lon": -43.9386,
+    "type": "raw_supplier",
+    "country": "Brazil"
+  },
+  "RawMaterial_Chile": {
+    "lat": -33.4569,
+    "lon": -70.6483,
+    "type": "raw_supplier",
+    "country": "Chile"
+  },
+  "RawMaterial_DRCongo": {
+    "lat": -4.3217,
+    "lon": 15.3222,
+    "type": "raw_supplier",
+    "country": "DR Congo"
+  },
   "Factory_Shanghai": {
     "lat": 31.2304,
     "lon": 121.4737,
-    "type": "supplier",
+    "type": "factory",
     "country": "China"
   },
   "Factory_Shenzhen": {
     "lat": 22.5431,
     "lon": 114.0579,
-    "type": "supplier",
+    "type": "factory",
     "country": "China"
   },
-  "Factory_Ho_Chi_Minh": {
+  "Factory_Guangzhou": {
+    "lat": 23.1291,
+    "lon": 113.2644,
+    "type": "factory",
+    "country": "China"
+  },
+  "Factory_Vietnam": {
     "lat": 10.8231,
     "lon": 106.6297,
-    "type": "supplier",
+    "type": "factory",
     "country": "Vietnam"
   },
-  "Factory_Mumbai": {
+  "Factory_India_Chennai": {
+    "lat": 13.0827,
+    "lon": 80.2707,
+    "type": "factory",
+    "country": "India"
+  },
+  "Factory_India_Mumbai": {
     "lat": 19.076,
     "lon": 72.8777,
-    "type": "supplier",
+    "type": "factory",
     "country": "India"
+  },
+  "Factory_Bangladesh": {
+    "lat": 23.8103,
+    "lon": 90.4125,
+    "type": "factory",
+    "country": "Bangladesh"
+  },
+  "Factory_Mexico": {
+    "lat": 19.4326,
+    "lon": -99.1332,
+    "type": "factory",
+    "country": "Mexico"
+  },
+  "Factory_EasternEurope": {
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "type": "factory",
+    "country": "Poland"
+  },
+  "Factory_Malaysia": {
+    "lat": 3.139,
+    "lon": 101.6869,
+    "type": "factory",
+    "country": "Malaysia"
+  },
+  "Factory_Indonesia": {
+    "lat": -6.2088,
+    "lon": 106.8456,
+    "type": "factory",
+    "country": "Indonesia"
   },
   "Shanghai_Port": {
     "lat": 31.2304,
@@ -71,6 +137,24 @@
     "type": "port",
     "country": "India"
   },
+  "Chennai_Port": {
+    "lat": 13.0827,
+    "lon": 80.2707,
+    "type": "port",
+    "country": "India"
+  },
+  "Jakarta_Port": {
+    "lat": -6.1751,
+    "lon": 106.865,
+    "type": "port",
+    "country": "Indonesia"
+  },
+  "Ho_Chi_Minh_Port": {
+    "lat": 10.7769,
+    "lon": 106.7009,
+    "type": "port",
+    "country": "Vietnam"
+  },
   "Jebel_Ali": {
     "lat": 25.0118,
     "lon": 55.0694,
@@ -94,6 +178,12 @@
     "lon": 9.92,
     "type": "port",
     "country": "Germany"
+  },
+  "Felixstowe_Port": {
+    "lat": 51.9539,
+    "lon": 1.3518,
+    "type": "port",
+    "country": "UK"
   },
   "Los_Angeles_Port": {
     "lat": 33.7395,
@@ -131,6 +221,30 @@
     "type": "port",
     "country": "USA"
   },
+  "AirHub_HongKong": {
+    "lat": 22.308,
+    "lon": 113.9185,
+    "type": "air_hub",
+    "country": "China"
+  },
+  "AirHub_Dubai": {
+    "lat": 25.2528,
+    "lon": 55.3644,
+    "type": "air_hub",
+    "country": "UAE"
+  },
+  "AirHub_Frankfurt": {
+    "lat": 50.0379,
+    "lon": 8.5622,
+    "type": "air_hub",
+    "country": "Germany"
+  },
+  "AirHub_Chicago": {
+    "lat": 41.9742,
+    "lon": -87.9073,
+    "type": "air_hub",
+    "country": "USA"
+  },
   "Warehouse_LA": {
     "lat": 34.0522,
     "lon": -118.2437,
@@ -155,6 +269,48 @@
     "type": "warehouse",
     "country": "USA"
   },
+  "Warehouse_Rotterdam": {
+    "lat": 51.9,
+    "lon": 4.45,
+    "type": "warehouse",
+    "country": "Netherlands"
+  },
+  "Warehouse_Singapore": {
+    "lat": 1.3521,
+    "lon": 103.8198,
+    "type": "warehouse",
+    "country": "Singapore"
+  },
+  "Warehouse_Dubai": {
+    "lat": 25.2048,
+    "lon": 55.2708,
+    "type": "warehouse",
+    "country": "UAE"
+  },
+  "DC_Dallas": {
+    "lat": 32.7767,
+    "lon": -96.797,
+    "type": "distribution",
+    "country": "USA"
+  },
+  "DC_Atlanta": {
+    "lat": 33.749,
+    "lon": -84.388,
+    "type": "distribution",
+    "country": "USA"
+  },
+  "DC_London": {
+    "lat": 51.5074,
+    "lon": -0.1278,
+    "type": "distribution",
+    "country": "UK"
+  },
+  "DC_Paris": {
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "type": "distribution",
+    "country": "France"
+  },
   "Customer_NewYork": {
     "lat": 40.7128,
     "lon": -74.006,
@@ -178,5 +334,17 @@
     "lon": -0.1278,
     "type": "customer",
     "country": "UK"
+  },
+  "Customer_Paris": {
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "type": "customer",
+    "country": "France"
+  },
+  "Customer_Dubai": {
+    "lat": 25.2048,
+    "lon": 55.2708,
+    "type": "customer",
+    "country": "UAE"
   }
 }

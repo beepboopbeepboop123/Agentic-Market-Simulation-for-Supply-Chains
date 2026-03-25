@@ -1,33 +1,21 @@
 import json
-import ollama
 import time
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from agents.hardware_detector import (
-    scan_hardware,
-    get_ollama_options,
-    TIER_CONFIG,
-    print_hardware_report
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 
+from agents.ai_provider import ask_ai, get_available_providers
+
 # ─────────────────────────────────────────
-# DETECT HARDWARE AT STARTUP
+# SHOW PROVIDER STATUS AT STARTUP
 # ─────────────────────────────────────────
 
-HARDWARE   = scan_hardware()
-TIER       = HARDWARE["tier"]
-OPTIONS    = get_ollama_options(TIER)
-AUTO_MODEL = HARDWARE["config"]["recommended_model"]
-
-print(f"\n{HARDWARE['config']['emoji']} Hardware Tier  : {TIER}")
-print(f"   GPU             : {HARDWARE['gpu']['gpu_name']}")
-print(f"   VRAM            : {HARDWARE['gpu']['vram_gb']} GB")
-print(f"   Recommended     : {AUTO_MODEL}")
-print(f"   Context length  : {OPTIONS['num_ctx']} tokens")
-print(f"   GPU layers      : {OPTIONS['num_gpu']}")
+print("\n🔌 AI Provider System")
+for p, status in get_available_providers().items():
+    print(f"   {status} — {p}")
 
 
 # ─────────────────────────────────────────
@@ -40,100 +28,13 @@ def load_results():
 
 
 # ─────────────────────────────────────────
-# HELPER — CALL LOCAL AI WITH HW LIMITS
-# ─────────────────────────────────────────
-
-def ask_ai(model, system_prompt, user_prompt):
-    """
-    Send a prompt to Ollama with hardware
-    appropriate limits to prevent OOM errors.
-    Automatically falls back to smaller model
-    if the requested model is too large.
-    """
-
-    tier_config = TIER_CONFIG[TIER]
-    safe_model  = model
-
-    # Override model if too large for hardware
-    if TIER in ["TIER_1", "TIER_2"]:
-        if model in ["mistral", "llama2", "llama3"]:
-            safe_model = tier_config["recommended_model"]
-            print(
-                f"  ⚠️  {model} too large for {TIER}. "
-                f"Switching to {safe_model}"
-            )
-
-    # First attempt with hardware tuned options
-    try:
-        response = ollama.chat(
-            model    = safe_model,
-            messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user",   "content": user_prompt}
-            ],
-            options  = OPTIONS
-        )
-        return response['message']['content']
-
-    except Exception as e:
-        print(f"  ⚠️  {safe_model} failed: {str(e)[:80]}")
-
-        # Second attempt — try fallback model
-        fallback = tier_config["fallback_model"]
-        print(f"  🔄 Trying fallback: {fallback}...")
-
-        try:
-            response = ollama.chat(
-                model    = fallback,
-                messages = [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user",   "content": user_prompt}
-                ],
-                options  = {
-                    "num_gpu":     0,
-                    "num_ctx":     1024,
-                    "num_predict": 500,
-                }
-            )
-            return response['message']['content']
-
-        except Exception as e2:
-            print(f"  ❌ Fallback also failed: {str(e2)[:80]}")
-
-            # Third attempt — CPU only with tinyllama
-            print(f"  🔄 Last resort: tinyllama on CPU...")
-            try:
-                response = ollama.chat(
-                    model    = "tinyllama",
-                    messages = [
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user",   "content": user_prompt}
-                    ],
-                    options  = {
-                        "num_gpu":     0,
-                        "num_ctx":     512,
-                        "num_predict": 300,
-                    }
-                )
-                return response['message']['content']
-
-            except Exception as e3:
-                return (
-                    f"AI unavailable on this hardware.\n"
-                    f"Error: {str(e3)[:100]}\n"
-                    f"Try: ollama pull {fallback}"
-                )
-
-
-# ─────────────────────────────────────────
 # AGENT 1 — ORCHESTRATOR
 # ─────────────────────────────────────────
 
-def agent_orchestrator(disaster_node, source, target, model):
+def agent_orchestrator(disaster_node, source, target):
 
     print("\n" + "="*55)
     print("  🧠 AGENT 1: ORCHESTRATOR")
-    print(f"  Running on: {TIER} with {safe_model_name(model)}")
     print("="*55)
 
     results = load_results()
@@ -167,13 +68,15 @@ Keep your response under 200 words.
 """
 
     print("⚙️  Orchestrator analyzing situation...")
-    response = ask_ai(model, system_prompt, user_prompt)
+    response, provider = ask_ai(
+        "orchestrator", system_prompt, user_prompt
+    )
     print(f"\n{response}")
 
     with open("data/agent1_orchestrator.txt", "w", encoding="utf-8") as f:
         f.write(response)
 
-    print("\n✅ Orchestrator complete")
+    print(f"\n✅ Orchestrator complete (via {provider})")
     return response
 
 
@@ -181,15 +84,14 @@ Keep your response under 200 words.
 # AGENT 2 — ROUTE ANALYST
 # ─────────────────────────────────────────
 
-def agent_route_analyst(model):
+def agent_route_analyst():
 
     print("\n" + "="*55)
     print("  📊 AGENT 2: ROUTE ANALYST")
-    print(f"  Running on: {TIER} with {safe_model_name(model)}")
     print("="*55)
 
-    results        = load_results()
-    orchestrator   = open(
+    results      = load_results()
+    orchestrator = open(
         "data/agent1_orchestrator.txt", encoding="utf-8"
     ).read()
 
@@ -223,25 +125,24 @@ Average: {results['best_avg_days']} days | ${results['best_avg_cost']}
 
 Your analysis should include:
 1. TOP 3 ROUTES — rank the best 3 with reasons
-2. SPEED vs COST TRADEOFF — which route is fastest,
-   which is cheapest, are they the same?
-3. RELIABILITY SCORE — based on success rate across
-   simulations, which route is most consistent?
-4. YOUR RECOMMENDATION — one clear route with
-   specific reasoning using the actual numbers
+2. SPEED vs COST TRADEOFF — which is fastest, cheapest?
+3. RELIABILITY SCORE — most consistent across simulations?
+4. YOUR RECOMMENDATION — one clear route with reasoning
 
 Be specific. Use route names and actual numbers.
 Keep response under 300 words.
 """
 
     print("⚙️  Route Analyst ranking all surviving routes...")
-    response = ask_ai(model, system_prompt, user_prompt)
+    response, provider = ask_ai(
+        "route_analyst", system_prompt, user_prompt
+    )
     print(f"\n{response}")
 
     with open("data/agent2_route_analyst.txt", "w", encoding="utf-8") as f:
         f.write(response)
 
-    print("\n✅ Route Analyst complete")
+    print(f"\n✅ Route Analyst complete (via {provider})")
     return response
 
 
@@ -249,11 +150,10 @@ Keep response under 300 words.
 # AGENT 3 — RISK ASSESSOR
 # ─────────────────────────────────────────
 
-def agent_risk_assessor(model):
+def agent_risk_assessor():
 
     print("\n" + "="*55)
     print("  ⚠️  AGENT 3: RISK ASSESSOR")
-    print(f"  Running on: {TIER} with {safe_model_name(model)}")
     print("="*55)
 
     results        = load_results()
@@ -302,13 +202,15 @@ Keep response under 300 words.
 """
 
     print("⚙️  Risk Assessor evaluating route dangers...")
-    response = ask_ai(model, system_prompt, user_prompt)
+    response, provider = ask_ai(
+        "risk_assessor", system_prompt, user_prompt
+    )
     print(f"\n{response}")
 
     with open("data/agent3_risk_assessor.txt", "w", encoding="utf-8") as f:
         f.write(response)
 
-    print("\n✅ Risk Assessor complete")
+    print(f"\n✅ Risk Assessor complete (via {provider})")
     return response
 
 
@@ -316,11 +218,10 @@ Keep response under 300 words.
 # AGENT 4 — PLAYBOOK WRITER
 # ─────────────────────────────────────────
 
-def agent_playbook_writer(model):
+def agent_playbook_writer():
 
     print("\n" + "="*55)
     print("  📋 AGENT 4: PLAYBOOK WRITER")
-    print(f"  Running on: {TIER} with {safe_model_name(model)}")
     print("="*55)
 
     results        = load_results()
@@ -375,35 +276,21 @@ Use actual route names and numbers throughout.
 """
 
     print("⚙️  Playbook Writer synthesizing all agent outputs...")
-    response = ask_ai(model, system_prompt, user_prompt)
+    response, provider = ask_ai(
+        "playbook_writer", system_prompt, user_prompt
+    )
     print(f"\n{response}")
 
     with open("data/playbook.txt", "w", encoding="utf-8") as f:
         f.write("MULTI-AGENT SUPPLY CHAIN RECOVERY PLAYBOOK\n")
         f.write("="*55 + "\n\n")
         f.write(f"Disaster     : {results['disaster']}\n")
-        f.write(f"Generated by : 4-Agent AI System ({model})\n")
-        f.write(f"Hardware     : {TIER} — {HARDWARE['gpu']['gpu_name']}\n\n")
+        f.write(f"Generated by : 4-Agent AI System\n\n")
         f.write("="*55 + "\n\n")
         f.write(response)
 
-    print("\n✅ Playbook Writer complete")
+    print(f"\n✅ Playbook Writer complete (via {provider})")
     return response
-
-
-# ─────────────────────────────────────────
-# HELPER — SAFE MODEL NAME
-# ─────────────────────────────────────────
-
-def safe_model_name(requested_model):
-    """
-    Returns the model that will actually run
-    given hardware constraints.
-    """
-    if TIER in ["TIER_1", "TIER_2"]:
-        if requested_model in ["mistral", "llama2", "llama3"]:
-            return TIER_CONFIG[TIER]["recommended_model"] + " (auto-switched)"
-    return requested_model
 
 
 # ─────────────────────────────────────────
@@ -416,40 +303,26 @@ def run_multi_agent_system(
     target,
     model = None
 ):
-    # Auto select model if not specified
-    if model is None or model == "auto":
-        model = AUTO_MODEL
-        print(f"\n🤖 Auto-selected model: {model} for {TIER}")
-
     print("\n" + "="*55)
     print("  🚀 MULTI-AGENT SYSTEM STARTING")
     print(f"  Disaster  : {disaster_node}")
-    print(f"  Model     : {model}")
-    print(f"  Hardware  : {TIER}")
-    print(f"  GPU       : {HARDWARE['gpu']['gpu_name']}")
-    print(f"  VRAM      : {HARDWARE['gpu']['vram_gb']} GB")
+    print(f"  Providers : Groq + Gemini + Mistral")
     print("="*55)
 
     start_time = time.time()
 
     orchestrator_output = agent_orchestrator(
-        disaster_node, source, target, model
+        disaster_node, source, target
     )
-    route_output        = agent_route_analyst(model)
-    risk_output         = agent_risk_assessor(model)
-    playbook_output     = agent_playbook_writer(model)
+    route_output        = agent_route_analyst()
+    risk_output         = agent_risk_assessor()
+    playbook_output     = agent_playbook_writer()
 
     elapsed = round(time.time() - start_time, 1)
 
     print("\n" + "="*55)
     print(f"  ✅ ALL 4 AGENTS COMPLETE in {elapsed}s")
-    print(f"  Hardware used : {TIER}")
-    print(f"  Model used    : {safe_model_name(model)}")
     print("="*55)
-
-    # Save hardware info with results
-    with open("data/hardware_config.json", "w") as f:
-        json.dump(HARDWARE, f, indent=2)
 
     return {
         "orchestrator":  orchestrator_output,
@@ -457,8 +330,7 @@ def run_multi_agent_system(
         "risk_assessor": risk_output,
         "playbook":      playbook_output,
         "time_taken":    elapsed,
-        "hardware_tier": TIER,
-        "model_used":    safe_model_name(model),
+        "model_used":    "multi-provider",
     }
 
 
@@ -467,12 +339,8 @@ def run_multi_agent_system(
 # ─────────────────────────────────────────
 
 if __name__ == "__main__":
-
-    print_hardware_report()
-
     results = run_multi_agent_system(
         disaster_node = "Shanghai_Port",
         source        = "Factory_Shanghai",
         target        = "Customer_NewYork",
-        model         = "auto"
     )

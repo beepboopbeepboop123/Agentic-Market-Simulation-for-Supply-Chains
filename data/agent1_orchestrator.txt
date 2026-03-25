@@ -1,7 +1,7 @@
- 1. **Assessment**: This disruption at Shanghai Port is critical as it impacts the primary route for goods from Factory_Shanghai to Customer_NewYork. The closure disrupts our normal flow, causing potential delays and increased costs.
+**Assessment:** The closure of Shanghai Port is a severe disruption, significantly impacting our supply chain. The simulations indicate a substantial increase in transportation time and cost.
 
-2. **Route Analyst**: Focus on optimizing the suggested alternative route (Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork). Analyze traffic patterns, shipping schedules, and port congestion for each leg to further minimize delays.
+**Route Analyst:** Focus on verifying the 17 surviving routes, particularly the recommended route via Busan Port, to ensure its feasibility and potential bottlenecks.
 
-3. **Risk Assessor**: Monitor geopolitical events, weather conditions, and any potential blockages along the alternative route. Identify contingencies for each risk factor that may impact the estimated 26.1-day transit time.
+**Risk Assessor:** Monitor the risk of further disruptions, such as congestion at Busan Port, and assess the potential impact of increased transportation costs on our operations.
 
-4. **Playbook Writer**: Emphasize swift response times, communication, and collaboration across all teams involved in logistics management. Incorporate detailed guidelines for handling the new route, addressing potential risks, and contingency plans to ensure minimal disruption to our customers.
+**Playbook Writer:** Emphasize the implementation of contingency plans, including the recommended route via Busan Port, and provide clear guidelines for emergency protocol activation, including communication with stakeholders and customers regarding the expected 26.1-day delivery time and increased cost of $1853.
