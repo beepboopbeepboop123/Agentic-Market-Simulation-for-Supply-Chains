@@ -2,12 +2,14 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import sys
 import os
+import json
 
 # Add the parent directory to the path so we can import our simulation modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Import your existing simulation engine
+# Import your simulation engine and multi-agent system
 from simulation.engine import run_monte_carlo
+from agents.multi_agent import run_multi_agent_system
 
 app = FastAPI(title="Supply Chain War Room API")
 
@@ -25,18 +27,34 @@ def read_root():
 @app.post("/simulate")
 def trigger_simulation(request: SimulationRequest):
     try:
-        # Trigger your exact existing python function
-        result = run_monte_carlo(
+        # Step 1: Run the Mathematical Simulation (Monte Carlo)
+        print(f"\n[API] Running {request.runs} simulations for {request.disaster_node}...")
+        math_result = run_monte_carlo(
             closed_node=request.disaster_node,
             source=request.source_node,
             target=request.target_node,
             runs=request.runs
         )
         
-        if not result:
+        if not math_result:
             raise HTTPException(status_code=404, detail="No recovery routes found.")
             
-        return {"status": "success", "data": result}
+        # Step 2: Trigger the AI Agents to analyze the math result
+        print(f"[API] Triggering 4-Agent Pipeline...")
+        agent_result = run_multi_agent_system(
+            disaster_node=request.disaster_node,
+            source=request.source_node,
+            target=request.target_node
+        )
+        
+        # Step 3: Combine both outputs into one massive payload for Flutter
+        return {
+            "status": "success",
+            "data": {
+                "simulation_math": math_result,
+                "ai_analysis": agent_result
+            }
+        }
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

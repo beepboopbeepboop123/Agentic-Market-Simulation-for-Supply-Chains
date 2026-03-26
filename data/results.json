@@ -4,74 +4,74 @@
   "target": "Customer_NewYork",
   "total_runs": 1000,
   "route_summary": {
-    "Factory_Shanghai \u2192 AirHub_HongKong \u2192 AirHub_Dubai \u2192 AirHub_Chicago \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
-      "times_chosen": 92,
-      "success_rate": "9.2%",
-      "avg_days": 11.3,
-      "avg_cost": 23164
-    },
     "Factory_Shanghai \u2192 AirHub_HongKong \u2192 AirHub_Frankfurt \u2192 AirHub_Chicago \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
-      "times_chosen": 88,
-      "success_rate": "8.8%",
-      "avg_days": 11.2,
-      "avg_cost": 21442
-    },
-    "Factory_Shanghai \u2192 Busan_Port \u2192 Los_Angeles_Port \u2192 Warehouse_LA \u2192 DC_Atlanta \u2192 Customer_NewYork": {
-      "times_chosen": 90,
-      "success_rate": "9.0%",
-      "avg_days": 31.4,
-      "avg_cost": 2169
-    },
-    "Factory_Shanghai \u2192 Busan_Port \u2192 Seattle_Port \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
-      "times_chosen": 90,
-      "success_rate": "9.0%",
-      "avg_days": 28.5,
-      "avg_cost": 1947
-    },
-    "Factory_Shanghai \u2192 Busan_Port \u2192 Singapore_Port \u2192 Houston_Port \u2192 Warehouse_Houston \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
-      "times_chosen": 100,
-      "success_rate": "10.0%",
-      "avg_days": 47.9,
-      "avg_cost": 3232
-    },
-    "Factory_Shanghai \u2192 Busan_Port \u2192 Singapore_Port \u2192 Warehouse_Singapore \u2192 Warehouse_LA \u2192 DC_Atlanta \u2192 Customer_NewYork": {
-      "times_chosen": 87,
-      "success_rate": "8.7%",
-      "avg_days": 46.6,
-      "avg_cost": 3217
-    },
-    "Factory_Shanghai \u2192 Busan_Port \u2192 Long_Beach_Port \u2192 Warehouse_LA \u2192 DC_Atlanta \u2192 Customer_NewYork": {
-      "times_chosen": 100,
-      "success_rate": "10.0%",
-      "avg_days": 31.2,
-      "avg_cost": 2145
+      "times_chosen": 105,
+      "success_rate": "10.5%",
+      "avg_days": 11.0,
+      "avg_cost": 21404
     },
     "Factory_Shanghai \u2192 Busan_Port \u2192 Singapore_Port \u2192 Los_Angeles_Port \u2192 Warehouse_LA \u2192 DC_Atlanta \u2192 Customer_NewYork": {
-      "times_chosen": 83,
-      "success_rate": "8.3%",
+      "times_chosen": 78,
+      "success_rate": "7.8%",
       "avg_days": 46.8,
-      "avg_cost": 3231
+      "avg_cost": 3230
     },
-    "Factory_Shanghai \u2192 AirHub_HongKong \u2192 AirHub_Chicago \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
-      "times_chosen": 90,
-      "success_rate": "9.0%",
-      "avg_days": 10.2,
-      "avg_cost": 17116
+    "Factory_Shanghai \u2192 AirHub_HongKong \u2192 AirHub_Dubai \u2192 AirHub_Chicago \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
+      "times_chosen": 88,
+      "success_rate": "8.8%",
+      "avg_days": 11.5,
+      "avg_cost": 23183
+    },
+    "Factory_Shanghai \u2192 Busan_Port \u2192 Seattle_Port \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
+      "times_chosen": 92,
+      "success_rate": "9.2%",
+      "avg_days": 28.6,
+      "avg_cost": 1967
     },
     "Factory_Shanghai \u2192 Busan_Port \u2192 New_York_Port \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
-      "times_chosen": 96,
-      "success_rate": "9.6%",
+      "times_chosen": 89,
+      "success_rate": "8.9%",
       "avg_days": 25.8,
-      "avg_cost": 1819
+      "avg_cost": 1815
+    },
+    "Factory_Shanghai \u2192 Busan_Port \u2192 Long_Beach_Port \u2192 Warehouse_LA \u2192 DC_Atlanta \u2192 Customer_NewYork": {
+      "times_chosen": 76,
+      "success_rate": "7.6%",
+      "avg_days": 31.3,
+      "avg_cost": 2155
+    },
+    "Factory_Shanghai \u2192 AirHub_HongKong \u2192 AirHub_Chicago \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
+      "times_chosen": 87,
+      "success_rate": "8.7%",
+      "avg_days": 10.0,
+      "avg_cost": 17085
+    },
+    "Factory_Shanghai \u2192 Busan_Port \u2192 Los_Angeles_Port \u2192 Warehouse_LA \u2192 DC_Atlanta \u2192 Customer_NewYork": {
+      "times_chosen": 93,
+      "success_rate": "9.3%",
+      "avg_days": 31.4,
+      "avg_cost": 2164
+    },
+    "Factory_Shanghai \u2192 Busan_Port \u2192 Singapore_Port \u2192 Warehouse_Singapore \u2192 Warehouse_LA \u2192 DC_Atlanta \u2192 Customer_NewYork": {
+      "times_chosen": 99,
+      "success_rate": "9.9%",
+      "avg_days": 46.9,
+      "avg_cost": 3264
+    },
+    "Factory_Shanghai \u2192 Busan_Port \u2192 Singapore_Port \u2192 Houston_Port \u2192 Warehouse_Houston \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
+      "times_chosen": 86,
+      "success_rate": "8.6%",
+      "avg_days": 48.1,
+      "avg_cost": 3253
     },
     "Factory_Shanghai \u2192 Busan_Port \u2192 Singapore_Port \u2192 New_York_Port \u2192 Warehouse_NewYork \u2192 Customer_NewYork": {
-      "times_chosen": 84,
-      "success_rate": "8.4%",
-      "avg_days": 40.6,
-      "avg_cost": 2839
+      "times_chosen": 107,
+      "success_rate": "10.7%",
+      "avg_days": 40.8,
+      "avg_cost": 2870
     }
   },
   "best_route": "Factory_Shanghai \u2192 AirHub_HongKong \u2192 AirHub_Chicago \u2192 Warehouse_Chicago \u2192 Warehouse_NewYork \u2192 Customer_NewYork",
-  "best_avg_days": 10.2,
-  "best_avg_cost": 17116
+  "best_avg_days": 10.0,
+  "best_avg_cost": 17085
 }

@@ -1,25 +1,25 @@
-### **Risk Assessment for Top 3 Routes (Shanghai Port Closure)**
+### **Risk Assessment for Top 3 Routes**
 
-#### **1. Route 12: Shanghai → Busan → New York**
-- **Congestion Risk:** **High** – Busan Port is a major hub; rerouted Shanghai cargo may overwhelm capacity.
-- **Geopolitical Risk:** **Medium** – U.S.-China tensions could delay customs in New York.
-- **Seasonal Risk:** **Low** – No major seasonal disruptions expected.
-- **Capacity Risk:** **High** – Busan’s infrastructure may struggle with sudden volume spikes.
+#### **1. Route: Factory_Shanghai → AirHub_HongKong → AirHub_Frankfurt → AirHub_Chicago → Warehouse_Chicago → Warehouse_NewYork → Customer_NewYork**
+- **Congestion Risk:** **High** – Hong Kong and Frankfurt are major hubs; delays likely.
+- **Geopolitical Risk:** **Medium** – EU/US routes stable, but potential trade policy shifts.
+- **Seasonal Risk:** **Low** – Winter weather minimal in these regions.
+- **Capacity Risk:** **High** – Air cargo space may be constrained post-Shanghai closure.
 - **Overall Risk:** **High**
 
-#### **2. Route 16: Shanghai → Busan → Seattle → Chicago → New York**
-- **Congestion Risk:** **Medium** – Seattle is less congested than Busan but may face inland rail delays.
-- **Geopolitical Risk:** **Low** – U.S.-Canada trade relations are stable.
-- **Seasonal Risk:** **Medium** – Winter weather could slow rail transit from Seattle to Chicago.
-- **Capacity Risk:** **Medium** – Seattle’s port can handle increased traffic but may face inland bottlenecks.
+#### **2. Route: Factory_Shanghai → Busan_Port → Singapore_Port → Los_Angeles_Port → Warehouse_LA → DC_Atlanta → Customer_NewYork**
+- **Congestion Risk:** **Medium** – Busan/Singapore ports are efficient but may face spillover from Shanghai.
+- **Geopolitical Risk:** **Low** – US trade routes stable, but US-China tensions could impact.
+- **Seasonal Risk:** **Medium** – Winter storms possible in LA/Atlanta.
+- **Capacity Risk:** **Medium** – Ports have spare capacity but may see surge in demand.
 - **Overall Risk:** **Medium**
 
-#### **3. Route 3: Shanghai → Busan → Seattle → Chicago → New York**
-- **Congestion Risk:** **Medium** – Similar to Route 16 but with an extra warehouse stop, adding minor risk.
-- **Geopolitical Risk:** **Low** – Same as Route 16.
-- **Seasonal Risk:** **Medium** – Winter rail delays remain a concern.
-- **Capacity Risk:** **Medium** – Extra handling at Chicago warehouse may slow transit.
-- **Overall Risk:** **Medium**
+#### **3. Route: Factory_Shanghai → AirHub_HongKong → AirHub_Dubai → AirHub_Chicago → Warehouse_Chicago → Warehouse_NewYork → Customer_NewYork**
+- **Congestion Risk:** **High** – Dubai is a key hub; delays likely with increased traffic.
+- **Geopolitical Risk:** **Medium** – Middle East stability could affect operations.
+- **Seasonal Risk:** **Low** – Dubai/Chicago weather is stable in winter.
+- **Capacity Risk:** **High** – Air cargo space may be tight.
+- **Overall Risk:** **High**
 
-### **Safest Route Overall: Route 16**
-**Why?** While all routes face risks, Route 16 balances congestion, geopolitical, and seasonal factors best. Seattle’s port is more resilient than Busan’s under sudden demand, and inland rail transit is less weather-sensitive than New York’s port operations. The route avoids the highest-risk congestion points while maintaining efficiency.
+### **SAFEST ROUTE OVERALL: Route 2 (Busan → Singapore → LA → Atlanta)**
+- **Why?** Lower geopolitical risk, manageable congestion, and better seasonal resilience compared to air-heavy routes. Ports have spare capacity, reducing bottlenecks.

@@ -1,34 +1,5 @@
-As the Route Analyst Agent, I've conducted a deep analysis of the 17 surviving routes following the Shanghai Port disruption. My assessment focuses on optimizing for speed, cost, and reliability.
+As the Route Analyst Agent, I've thoroughly analyzed the 11 surviving routes to optimize our supply chain post-Shanghai Port closure.
 
-**1. TOP 3 ROUTES:**
-
-1.  **Route 12 (Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork):**
-    *   **Avg days:** 26.1
-    *   **Avg cost:** $1853
-    *   **Success rate:** 6.2%
-    *   **Reason:** This route is the clear front-runner, offering the lowest transit time and cost across all options. Its direct New York Port access streamlines final delivery.
-
-2.  **Route 16 (Factory_Shanghai → Busan_Port → Seattle_Port → Warehouse_Chicago → Customer_NewYork):**
-    *   **Avg days:** 27.5
-    *   **Avg cost:** $1941
-    *   **Success rate:** 6.1%
-    *   **Reason:** A strong contender, providing the second-fastest transit and highly competitive cost, utilizing the efficient Seattle gateway.
-
-3.  **Route 3 (Factory_Shanghai → Busan_Port → Seattle_Port → Warehouse_Chicago → Warehouse_NewYork → Customer_NewYork):**
-    *   **Avg days:** 28.6
-    *   **Avg cost:** $1959
-    *   **Success rate:** 7.4%
-    *   **Reason:** While slightly longer and more expensive than Route 16, it boasts the highest success rate among the top performers, indicating greater consistency.
-
-**2. SPEED vs COST TRADEOFF:**
-
-*   **Fastest Route:** Route 12, with an average of **26.1 days**.
-*   **Cheapest Route:** Route 12, with an average cost of **$1853**.
-
-**3. RELIABILITY SCORE:**
-
-*   **Most Consistent:** Route 3, demonstrating the highest success rate at **7.4%** across simulations.
-
-**4. YOUR RECOMMENDATION:**
-
-My clear recommendation is **Route 12 (Factory_Shanghai → Busan_Port → New_York_Port → Warehouse_NewYork → Customer_NewYork)**. This route provides the optimal balance, being both the fastest (26.1 days) and the most cost-effective ($1853). While Route 3 has a marginally higher success rate, the significant time and cost efficiencies of Route 12 make it the most strategically advantageous choice for maintaining supply chain flow and minimizing financial impact during this disruption.
+**1. TOP 3 ROUTES**
+1.  **Route 7 (Factory_Shanghai → AirHub_HongKong → AirHub_Chicago → ...):** This is the fastest option at **10.0 days**, crucial for minimizing disruption impact, despite its higher cost of **$17085**.
+2.  **Route 1 (Factory_Shanghai → AirHub_HongKong → AirHub_
