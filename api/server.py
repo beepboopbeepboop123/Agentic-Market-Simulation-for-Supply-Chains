@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import sys
 import os
-import json
 
 # Add the parent directory to the path so we can import our simulation modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -12,6 +12,15 @@ from simulation.engine import run_monte_carlo
 from agents.multi_agent import run_multi_agent_system
 
 app = FastAPI(title="Supply Chain War Room API")
+
+# Enable CORS for Flutter/Web testing
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows your Flutter app to connect
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows POST, GET, OPTIONS, etc.
+    allow_headers=["*"],
+)
 
 # Define the exact data structure the Flutter app will send to us
 class SimulationRequest(BaseModel):
