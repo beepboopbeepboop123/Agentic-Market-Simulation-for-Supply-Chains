@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import sys
-import os
+import os   
 
 # Add the parent directory to the path so we can import our simulation modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
